@@ -1,14 +1,24 @@
 from django.shortcuts import render
+from .models import Produto
 
 # Create your views here.
 
 def index(request):
-    return render(request, 'Web/index.html')
+    return render(request, 'web/index.html')
 
 #Exercício
 def sobre(request):
-    return render(request, 'Web/sobre.html')
+    return render(request, 'web/sobre.html')
 
+
+def recuperar_produto(request, id):
+    produto = Produto.objects.get(pk=1)
+    return render(request, 'web/produto.html', {'produto': produto})
+
+def listar_produtos(request):
+    produtos = Produto.objects.all()
+    return render(request, "web/listar_produtos.html", {'produtos':produtos})
+# http://127.0.0.1:8000/teste_produto/1
 
 #esse arquivo views.py serve para tratar a logica de negócio -> ele recebe o resultado do mapeamento feito pelas urls. 
 # view model e admin são os principais dentro da pasta do aplicativo!
